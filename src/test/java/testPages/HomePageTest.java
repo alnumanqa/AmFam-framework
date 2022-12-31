@@ -1,6 +1,7 @@
 package testPages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
@@ -120,6 +121,9 @@ public class HomePageTest extends BaseClass {
 		driver.findElement(By.xpath("//body[1]/div[1]/header[1]/div[1]/div[2]/div[1]/div[1]/button[1]")).click();
 		Thread.sleep(3000);
 		driver.findElement(By.id("uid_56")).sendKeys("Car");
+		Thread.sleep(5000);
+		//navigate().back() would not work here
+		//driver.navigate().back();
 		Thread.sleep(5000);
 		driver.findElement(By.id("uid_56")).clear();
 		Thread.sleep(5000);
