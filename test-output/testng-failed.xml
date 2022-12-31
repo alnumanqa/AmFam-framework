@@ -5,8 +5,8 @@
     <classes>
       <class name="testPages.HomePageTest">
         <methods>
+          <include name="use_of_clear_method_in_searchEngine"/>
           <include name="tearUp"/>
-          <include name="useOfSendKeys"/>
           <include name="setUp"/>
         </methods>
       </class> <!-- testPages.HomePageTest -->
