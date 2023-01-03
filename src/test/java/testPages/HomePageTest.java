@@ -130,5 +130,26 @@ public class HomePageTest extends BaseClass {
 		driver.findElement(By.id("uid_56")).sendKeys("HomeOwner");
 		Thread.sleep(3000);
 	}
+	
+	@Test(enabled = false)
+	
+	public void useOfEnterMethod() throws InterruptedException {
+		driver.findElement(By.xpath("//body[1]/div[1]/header[1]/div[1]/div[2]/div[1]/div[1]/button[1]")).click();
+		Thread.sleep(3000);
+		driver.findElement(By.id("uid_56")).sendKeys("Car");
+		Thread.sleep(3000);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
