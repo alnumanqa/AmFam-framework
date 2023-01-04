@@ -131,7 +131,7 @@ public class HomePageTest extends BaseClass {
 		Thread.sleep(3000);
 	}
 
-	// Hw4 starts here
+	// Hw4 starts here.
 	@Test(enabled = false)
 	public void useOfEnter() throws InterruptedException {
 		driver.findElement(By.xpath("//body[1]/div[1]/header[1]/div[1]/div[2]/div[1]/div[1]/button[1]")).click();
