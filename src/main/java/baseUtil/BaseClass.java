@@ -1,20 +1,21 @@
 package baseUtil;
 
+import static utils.IConstant.*;
 import java.time.Duration;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 import pages.HomePage;
+import utils.Configuration;
 
 public class BaseClass {
 	public WebDriver driver;
 	public HomePage homePage;
+	Configuration configuration = new Configuration();
 
 	@BeforeMethod
 	public void setUp() {
@@ -59,15 +60,21 @@ public class BaseClass {
 		// driver = new EdgeDriver();
 
 		System.setProperty("webdriver.chrome.driver", "./driver/chromedriver.exe");
+
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
-		driver.get("https://www.amfam.com/");
-		// driver.manage().window().fullscreen();
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+		// driver.get("https://www.amfam.com/");
+		// we are calling url from properties file
+		driver.get(configuration.getProperty((URL)));
+		// convert String to long
+		long pageLoadTime = Long.parseLong(configuration.getProperty(PAGELOAD_WAIT));
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(pageLoadTime));
+		long implicitlyWait = Long.parseLong(configuration.getProperty(IMPLICITLY_WAIT));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitlyWait));
 		homePage = new HomePage(driver);
 	}
+	
 
 	@AfterMethod
 	public void tearUp() {

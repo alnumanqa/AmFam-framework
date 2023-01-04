@@ -110,46 +110,55 @@ public class HomePageTest extends BaseClass {
 		System.out.println("Text for the Webelement: " + insurance.getText());
 	}
 
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void use_of_getAttribute_method() {
 		String logo = driver.findElement(By.cssSelector("img.SiteHeader__logo-img")).getAttribute("class");
 		System.out.println("The value of the attribute is: " + logo);
 	}
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void use_of_clear_method_in_searchEngine() throws InterruptedException {
 		driver.findElement(By.xpath("//body[1]/div[1]/header[1]/div[1]/div[2]/div[1]/div[1]/button[1]")).click();
 		Thread.sleep(3000);
 		driver.findElement(By.id("uid_56")).sendKeys("Car");
 		Thread.sleep(5000);
-		//navigate().back() would not work here
-		//driver.navigate().back();
+		// navigate().back() would not work here
+		// driver.navigate().back();
 		Thread.sleep(5000);
 		driver.findElement(By.id("uid_56")).clear();
 		Thread.sleep(5000);
 		driver.findElement(By.id("uid_56")).sendKeys("HomeOwner");
 		Thread.sleep(3000);
 	}
-	
+
+	// Hw4 starts here
 	@Test(enabled = false)
-	
-	public void useOfEnterMethod() throws InterruptedException {
+	public void useOfEnter() throws InterruptedException {
 		driver.findElement(By.xpath("//body[1]/div[1]/header[1]/div[1]/div[2]/div[1]/div[1]/button[1]")).click();
 		Thread.sleep(3000);
-		driver.findElement(By.id("uid_56")).sendKeys("Car");
+		driver.findElement(By.id("uid_56")).sendKeys("Car", Keys.ENTER);
 		Thread.sleep(3000);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	@Test(enabled = false)
+	public void useOfReturn() throws InterruptedException {
+		driver.findElement(By.xpath("//body[1]/div[1]/header[1]/div[1]/div[2]/div[1]/div[1]/button[1]")).click();
+		Thread.sleep(3000);
+		driver.findElement(By.id("uid_56")).sendKeys("Life Insurance", Keys.RETURN);
+		Thread.sleep(3000);
+	}
+
+	@Test(enabled = false)
+	public void useOfNavigateMethod() throws InterruptedException {
+		Thread.sleep(3000);
+		driver.navigate().to("https://www.statefarm.com/");
+		Thread.sleep(3000);
+		driver.navigate().back();
+		Thread.sleep(5000);
+		driver.navigate().forward();
+		Thread.sleep(5000);
+		driver.navigate().refresh();
+		Thread.sleep(5000);
+	}
 
 }
