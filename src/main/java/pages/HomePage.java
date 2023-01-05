@@ -20,6 +20,7 @@ public class HomePage {
 	// (//button[@class='SiteHeader__submenu-toggle a _hover-underline'])[1]
 	@FindBy(css = "button.SiteHeader__submenu-toggle.a._hover-underline")
 	WebElement signin01;
+	//Making changes
 
 	@FindBy(xpath = "//span[text()=' Sign In ']")
 	WebElement signin02;
