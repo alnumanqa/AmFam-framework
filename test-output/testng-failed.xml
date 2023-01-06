@@ -5,7 +5,11 @@
     <classes>
       <class name="testPages.HomePageTest">
         <methods>
+<<<<<<< Updated upstream
           <include name="use_of_clear_method_in_searchEngine"/>
+=======
+          <include name="use_of_getAttribute_method"/>
+>>>>>>> Stashed changes
           <include name="tearUp"/>
           <include name="setUp"/>
         </methods>

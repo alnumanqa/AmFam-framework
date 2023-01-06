@@ -1,6 +1,7 @@
 package testPages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
@@ -130,6 +131,36 @@ public class HomePageTest extends BaseClass {
 		driver.findElement(By.id("uid_56")).sendKeys("HomeOwner");
 		Thread.sleep(3000);
 	}
+	
+	// Hw4 starts here.
+		@Test(enabled = false)
+		public void useOfEnter() throws InterruptedException {
+			driver.findElement(By.xpath("//body[1]/div[1]/header[1]/div[1]/div[2]/div[1]/div[1]/button[1]")).click();
+			Thread.sleep(3000);
+			driver.findElement(By.id("uid_56")).sendKeys("Car", Keys.ENTER);
+			Thread.sleep(3000);
+		}
+
+		@Test(enabled = false)
+		public void useOfReturn() throws InterruptedException {
+			driver.findElement(By.xpath("//body[1]/div[1]/header[1]/div[1]/div[2]/div[1]/div[1]/button[1]")).click();
+			Thread.sleep(3000);
+			driver.findElement(By.id("uid_56")).sendKeys("Life Insurance", Keys.RETURN);
+			Thread.sleep(3000);
+		}
+
+		@Test(enabled = false)
+		public void useOfNavigateMethod() throws InterruptedException {
+			Thread.sleep(3000);
+			driver.navigate().to("https://www.statefarm.com/");
+			Thread.sleep(3000);
+			driver.navigate().back();
+			Thread.sleep(5000);
+			driver.navigate().forward();
+			Thread.sleep(5000);
+			driver.navigate().refresh();
+			Thread.sleep(5000);
+		}
 
 
 }
