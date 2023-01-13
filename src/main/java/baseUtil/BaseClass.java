@@ -15,7 +15,7 @@ import utils.Configuration;
 public class BaseClass {
 	public WebDriver driver;
 	public HomePage homePage;
-	Configuration configuration = new Configuration();
+	Configuration configuration;
 
 	@BeforeMethod
 	public void setUp() {
@@ -60,8 +60,8 @@ public class BaseClass {
 		// driver = new EdgeDriver();
 
 		System.setProperty("webdriver.chrome.driver", "./driver/chromedriver.exe");
-
 		driver = new ChromeDriver();
+		configuration = new Configuration();
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		// driver.get("https://www.amfam.com/");

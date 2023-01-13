@@ -1,13 +1,24 @@
 package testPages;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import baseUtil.BaseClass;
 
 public class HomePageTest extends BaseClass {
+
+	Dimension dimension;
+	Actions actions;
+	Select select;
 
 	@Test(enabled = false, priority = 1)
 	public void clickLogoTest() throws InterruptedException {
@@ -110,7 +121,7 @@ public class HomePageTest extends BaseClass {
 		System.out.println("Text for the Webelement: " + insurance.getText());
 	}
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void use_of_getAttribute_method() {
 		String logo = driver.findElement(By.cssSelector("img.SiteHeader__logo-img")).getAttribute("class");
 		System.out.println("The value of the attribute is: " + logo);
@@ -159,6 +170,158 @@ public class HomePageTest extends BaseClass {
 		Thread.sleep(5000);
 		driver.navigate().refresh();
 		Thread.sleep(5000);
+	}
+	// HW5 starts from here
+
+	@Test(enabled = false)
+	public void use_of_set_specific_size_in_window() throws InterruptedException {
+		Thread.sleep(3000);
+		dimension = new Dimension(900, 500);
+		driver.manage().window().setSize(dimension);
+		Thread.sleep(3000);
+		driver.navigate().to("https://www.statefarm.com/");
+		Thread.sleep(3000);
+		System.out.println("Size of the set screen: " + driver.manage().window().getSize());
+		driver.manage().window().maximize();
+		Thread.sleep(3000);
+		System.out.println("Size of the maximize screen: " + driver.manage().window().getSize());
+		Thread.sleep(3000);
+		driver.manage().window().setSize(dimension);
+		Thread.sleep(3000);
+		System.out.println("Size of the set screen: " + driver.manage().window().getSize());
+		Thread.sleep(3000);
+		driver.manage().window().fullscreen();
+		Thread.sleep(3000);
+		System.out.println("Size of the Fullscreen: " + driver.manage().window().getSize());
+
+	}
+
+	@Test(enabled = false)
+	public void useOfHardAssert01() {
+		WebElement startANewQuote = driver
+				.findElement(By.xpath("//button[normalize-space(text())='Start a New Quote']"));
+		boolean flag = startANewQuote.isDisplayed();
+		System.out.println("Is startANewQuote displayed: " + flag);
+		Assert.assertTrue(true, "Start a new quote is not displayed");
+	}
+
+	@Test(enabled = false)
+	public void useOfHardAssert02() throws InterruptedException {
+		String expected = "Auto, Home, Life, & More | American Family Insurance";
+		String actual = driver.getTitle();
+		System.out.println("Actual title: " + actual);
+		Assert.assertEquals(actual, expected, "Homepage title does not match");
+		Thread.sleep(3000);
+		WebElement logo = driver.findElement(By.className("SiteHeader__logo-img"));
+		boolean displayed = logo.isDisplayed();
+		System.out.println("Is Logo displayed: " + displayed);
+		Assert.assertTrue(true, "Logo not displayed");
+	}
+
+	// First part of the test case will fail. Since I am using hard assertion, then
+	// the execution will stop too.
+	@Test(enabled = false)
+	public void useOfHardAssert03() throws InterruptedException {
+		String expected = "Auto, Home, Life, amp& More | American Family Insurance";
+		String actual = driver.getTitle();
+		System.out.println("Actual title: " + actual);
+		Assert.assertEquals(actual, expected, "Homepage title does not match");
+		Thread.sleep(3000);
+		WebElement logo = driver.findElement(By.className("SiteHeader__logo-img"));
+		boolean displayed = logo.isDisplayed();
+		System.out.println("Is Logo displayed: " + displayed);
+		Assert.assertTrue(true, "Logo not displayed");
+	}
+
+	// Using soft assertion
+	// First part of the test case will fail. Since I am using soft assertion, then
+	// the execution will continue.
+	@Test(enabled = false)
+	public void useOfHardAssert04() throws InterruptedException {
+		String expected = "Auto, Home, Life, amp& More | American Family Insurance";
+		String actual = driver.getTitle();
+		System.out.println("Actual title: " + actual);
+		SoftAssert softAssert = new SoftAssert();
+		softAssert.assertEquals(actual, expected, "Homepage title does not match");
+		Thread.sleep(3000);
+		WebElement logo = driver.findElement(By.className("SiteHeader__logo-img"));
+		boolean displayed = logo.isDisplayed();
+		System.out.println("Is Logo displayed: " + displayed);
+		softAssert.assertTrue(true, "Logo not displayed");
+	}
+
+	// using of mouse hover over action
+	@Test(enabled = false)
+	public void useofHoverAction01() throws InterruptedException {
+		// To do the mouse hover action, we use Actions class
+		actions = new Actions(driver);
+		WebElement insurance = driver.findElement(By.xpath("//a[text()='Insurance']"));
+		Thread.sleep(3000);
+		actions.moveToElement(insurance).build().perform();// this syntax interview question
+		Thread.sleep(3000);
+
+	}
+
+	@Test(enabled = false)
+	public void useOfHoverAction02() throws InterruptedException {
+		actions = new Actions(driver);
+		WebElement claims = driver.findElement(By.linkText("Claims"));
+		Thread.sleep(4000);
+		actions.moveToElement(claims).build().perform();
+		Thread.sleep(4000);
+	}
+
+	// drop down, all categories
+	// drop down is a commonly asked interview question
+	// here - using selectByIndex() method
+	// This method is not suggested, or not used much
+	// Because, adding a new web element or deleting a new one change the index
+	// number
+
+	@Test(enabled = false)
+	public void useOfDropDown_by_index_Method() throws InterruptedException {
+		Thread.sleep(3000);
+		driver.get("https://www.amazon.com/ref=nav_logo");
+		Thread.sleep(3000);
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebElement dropElement01 = driver.findElement(By.xpath("//select[@id='searchDropdownBox']"));
+		select = new Select(dropElement01);
+		select.selectByIndex(4);
+		Thread.sleep(3000);
+	}
+
+	// drop down, all categories
+	// drop down is a commonly asked interview question
+	// Most commonly use method in drop down --> selectByVisibleText()
+
+	@Test(enabled = false)
+	public void useOfDropDown_by_visual_text() throws InterruptedException {
+		Thread.sleep(3000);
+		driver.get("https://www.amazon.com/ref=nav_logo");
+		Thread.sleep(3000);
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebElement dropElement02 = driver.findElement(By.xpath("//select[@id='searchDropdownBox']"));
+		select = new Select(dropElement02);
+		select.selectByVisibleText("Appliances");
+		Thread.sleep(3000);
+	}
+
+	// drop down, all categories
+	// drop down is a commonly asked interview question
+	// use method --> selectByValue()
+	@Test(enabled = true)
+	public void useOfDropDown_by_value() throws InterruptedException {
+		Thread.sleep(3000);
+		driver.get("https://www.amazon.com/ref=nav_logo");
+		Thread.sleep(3000);
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		WebElement dropElement03 = driver.findElement(By.xpath("//select[@id='searchDropdownBox']"));
+		select = new Select(dropElement03);
+		select.selectByValue("search-alias=mobile-apps");
+		Thread.sleep(3000);
 	}
 
 }
