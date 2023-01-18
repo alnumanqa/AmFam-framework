@@ -38,9 +38,9 @@ public class HomePage {
 		Thread.sleep(3000);
 	}
 
-	public void clickSignIn01() throws InterruptedException {
+	public void clickSignIn01() throws InterruptedException  {
 		clickElement(signin01);
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 	}
 
 	public void clickSignin02() throws InterruptedException {
@@ -67,5 +67,6 @@ public class HomePage {
 		clickElement(rememberUserIdCheckBox);
 		Thread.sleep(3000);
 	}
+	
 
 }
