@@ -12,5 +12,6 @@ public class Logs {
 		logger.log(Level.INFO,msg); //it helps to print in the console
 		Reporter.log(msg + "<br>");
 	}
+	
 
 }

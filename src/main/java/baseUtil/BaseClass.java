@@ -29,6 +29,7 @@ public class BaseClass {
 
 	@BeforeMethod
 	public void setUp() {
+		
 		/*
 		 * 1st way, to show the location of chrome driver
 		 * System.setProperty("webdriver.chrome.driver",
