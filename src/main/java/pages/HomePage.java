@@ -24,7 +24,7 @@ public class HomePage {
 	@FindBy(xpath = "//span[text()=' Sign In ']")
 	WebElement signin02;
 
-	@FindBy(css = "input#uid_56")
+	@FindBy(id = "uid_55")
 	WebElement userId;
 
 	@FindBy(css = "input#uid_61")
@@ -32,15 +32,21 @@ public class HomePage {
 
 	@FindBy(css = "span.Selection__control._checkbox")
 	WebElement rememberUserIdCheckBox;
+	
+	@FindBy(xpath = "(//button[@class='SiteHeader__submenu-toggle a _hover-underline'])[1]")
+	WebElement searchButton;
+	
+	@FindBy(id = "uid_55")
+	WebElement searchBox;
 
 	public void clickLogo() throws InterruptedException {
 		clickElement(logo);
 		Thread.sleep(3000);
 	}
 
-	public void clickSignIn01() throws InterruptedException {
+	public void clickSignIn01() throws InterruptedException  {
 		clickElement(signin01);
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 	}
 
 	public void clickSignin02() throws InterruptedException {
@@ -67,5 +73,14 @@ public class HomePage {
 		clickElement(rememberUserIdCheckBox);
 		Thread.sleep(3000);
 	}
+	
+	public void useOfLogger() throws InterruptedException {
+		clickElement(searchButton);
+		Thread.sleep(3000);
+		inputText(searchBox, "Numan");
+		Thread.sleep(3000);
+	}
+	
+	
 
 }
