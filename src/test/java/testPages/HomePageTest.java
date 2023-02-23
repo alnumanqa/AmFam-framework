@@ -7,16 +7,17 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 import baseUtil.BaseClass;
 
 public class HomePageTest extends BaseClass {
+
+	Dimension dimension;
+	Actions actions;
+	Select select;
 
 	@Test(enabled = false, priority = 1)
 	public void clickLogoTest() throws InterruptedException {
@@ -309,7 +310,7 @@ public class HomePageTest extends BaseClass {
 	// drop down, all categories
 	// drop down is a commonly asked interview question
 	// use method --> selectByValue()
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void useOfDropDown_by_value() throws InterruptedException {
 		Thread.sleep(3000);
 		driver.get("https://www.amazon.com/ref=nav_logo");
@@ -320,95 +321,6 @@ public class HomePageTest extends BaseClass {
 		select = new Select(dropElement03);
 		select.selectByValue("search-alias=mobile-apps");
 		Thread.sleep(3000);
-	}
-
-	// HW6 starts here
-	@Test(enabled = false)
-	public void Use_of_loggerTest01() throws InterruptedException {
-		homePage.clickSignIn01();
-	}
-
-	@Test(enabled = false)
-	public void Use_of_loggerTest02() throws InterruptedException {
-		homePage.clickSignIn01();
-		homePage.inputTextInUserIdField();
-	}
-
-	@Test(enabled = false)
-	public void click_by_javascriptExecutor() throws InterruptedException {
-		WebElement singninButton = driver
-				.findElement(By.cssSelector("button.SiteHeader__submenu-toggle.a._hover-underline"));
-		js.executeScript("arguments[0].click()", singninButton);
-		Thread.sleep(4000);
-
-	}
-
-	@Test(enabled = false)
-	public void inputText_by_javascriptExecutor() throws InterruptedException {
-		WebElement singninButton = driver
-				.findElement(By.cssSelector("button.SiteHeader__submenu-toggle.a._hover-underline"));
-		js.executeScript("arguments[0].click()", singninButton);
-		Thread.sleep(4000);
-		WebElement userid = driver.findElement(By.cssSelector("input#uid_56"));
-		WebElement password = driver.findElement(By.cssSelector("input#uid_61"));
-		js.executeScript("arguments[0].value='Numan'", userid);
-		Thread.sleep(4000);
-		js.executeScript("arguments[0].value='1234'", password);
-		Thread.sleep(4000);
-		WebElement checkbox = driver.findElement(By.cssSelector("span.Selection__control._checkbox"));
-		js.executeScript("arguments[0].click()", checkbox);
-		Thread.sleep(4000);
-		Assert.assertTrue(true, "Webelement not found");
-		WebElement signinButton2 = driver.findElement(By.className("LoadingButton__content"));
-		js.executeScript("arguments[0].click()", signinButton2);
-		Thread.sleep(4000);
-	}
-
-	@Test(enabled = false)
-	public void handleing_hidden_element() throws InterruptedException {
-		Thread.sleep(3000);
-		driver.navigate().to("https://enthrallit.com/");
-		Thread.sleep(3000);
-		driver.findElement(By.xpath("//a[@class='nav-link' and text()='Selenium']")).click();
-		Thread.sleep(3000);
-		// driver.findElement(By.cssSelector("button#formButton3")).sendKeys("Numan",
-		// Keys.ENTER);
-		driver.findElement(By.xpath("//button[text()='Hide / Show' and @id='formButton3']")).click();
-		Thread.sleep(3000);
-		WebElement hideElement1 = driver.findElement(By.xpath("//button[text()='Hide / Show' and @id='formButton3']"));
-		js.executeScript("arguments[0].value='numan'", hideElement1);
-		Thread.sleep(3000);
-
-	}
-
-	@Test(enabled = false)
-	public void use_of_scroll_down_and_scroll_up_by_actions_class() throws InterruptedException {
-		actions.keyDown(Keys.CONTROL).sendKeys(Keys.END).perform();
-		Thread.sleep(4000);
-		actions.keyDown(Keys.CONTROL).sendKeys(Keys.HOME).perform();
-		Thread.sleep(4000);
-	}
-
-	@Test(enabled = false)
-	public void use_of_scroll_down_and_scroll_up_by_javascriptExecutor() throws InterruptedException {
-		js.executeScript("window.scrollBy(0, 2500)", "");
-		Thread.sleep(4000);
-		js.executeScript("window.scrollBy(0, -1500)", "");
-		Thread.sleep(4000);
-	}
-
-	@Test(enabled = false)
-	public void use_of_explicitly_wait() throws InterruptedException {
-		wait.until(ExpectedConditions
-				.elementToBeClickable(By.xpath("//button[normalize-space(text())='Start a New Quote']"))).click();
-		Thread.sleep(4000);
-	}
-
-	@Test(enabled = true)
-	public void use_of_explicitly_wait02() throws InterruptedException {
-		WebElement startAquote = driver.findElement(By.xpath("//button[normalize-space(text())='Start a New Quote']"));
-		wait.until(ExpectedConditions.visibilityOf(startAquote)).click();
-		Thread.sleep(4000);
 	}
 
 }
