@@ -6,7 +6,7 @@
       <class name="testPages.HomePageTest">
         <methods>
           <include name="tearUp"/>
-          <include name="useOfSendKeys"/>
+          <include name="switchBetweenWindow01"/>
           <include name="setUp"/>
         </methods>
       </class> <!-- testPages.HomePageTest -->
